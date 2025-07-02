@@ -54,6 +54,9 @@ def group_anagrams(strs: list[str]) -> list[list[str]]:
     result.sort()
     return result
 
+# Time complexity: O(n * k log k) - n is the number of strings, k is the length of the longest string
+# Space complexity: O(n * k) - storing the strings in the dictionary
+
 if __name__ == "__main__":
     import doctest
     if doctest.testmod().failed == 0:
