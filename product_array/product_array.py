@@ -42,10 +42,37 @@ def product_except_self(nums: list[int]) -> list[int]:
         i += 1
     return output
 
+# Time Complexity: O(n^2) - We iterate through the list and for each element, we calculate the product of the remaining elements.
+# Space Complexity: O(n) - We create a new list to store the output.
+
+def product_except_self_optimized(nums: list[int]) -> list[int]:
+    """
+    Optimized version of product_except_self that calculates the product in O(n) time.
+    This avoids the nested loop and uses two passes to calculate the left and right products.
+    >>> product_except_self_optimized([1, 2, 4, 6])
+    [48, 24, 12, 8]
+    >>> product_except_self_optimized([-1, 0, 1, 2, 3])
+    [0, -6, 0, 0, 0]
+    """
+    n = len(nums)
+    output = [1] * n
+
+    left_product = 1
+    for i in range(n):
+        output[i] = left_product
+        left_product *= nums[i]
+
+    right_product = 1
+    for i in range(n - 1, -1, -1):
+        output[i] *= right_product
+        right_product *= nums[i]
+
+    return output
+
+# Time Complexity: O(n) - We make two passes through the list.
+# Space Complexity: O(n) - We create a new list to store the output.
+
 if __name__ == "__main__":
     import doctest
     if doctest.testmod().failed == 0:
         print("All tests passed.")
-
-# Time Complexity: O(n^2) - We iterate through the list and for each element, we calculate the product of the remaining elements.
-# Space Complexity: O(n) - We create a new list to store the output.
