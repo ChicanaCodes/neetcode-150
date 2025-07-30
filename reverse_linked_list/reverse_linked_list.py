@@ -15,7 +15,14 @@ def reverse_linked_list(head):
     - Iterate through the list and reverse the pointers of the nodes.
     - Return the new head of the reversed list.
     '''
-    pass
+    prev = None
+    current = head
+    while current:
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    return prev
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
